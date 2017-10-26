@@ -32,6 +32,7 @@ pages_number = int(get_number(url_addr1))+1
 tmp = 0
 for x in range(1,pages_number):
 	imgurl = url_addr+str(x)
+	print 'Current page NO. is: '+str(x)
 	for y in get_page(imgurl):
 	 	src_url = y.get('src')
 		try:
