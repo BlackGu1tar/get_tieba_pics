@@ -1,6 +1,9 @@
 # -*- coding=utf-8 -*-
 
 
+# -*- coding=utf-8 -*-
+
+
 import urllib,re,requests
 from bs4 import BeautifulSoup
 
@@ -19,21 +22,21 @@ def get_number(url):
 	page_no = page_number[1].string
 	return page_no
 
-input_id = raw_input('Enter tieba_url ID : ')
+input_id = raw_input('Enter tieba ID : ')
 url_head = 'https://tieba.baidu.com/p/'
-url_str = '?see_lz='
+url_str = '?see_lz=1&pn='
 url_addr = url_head+input_id+url_str
-pages_number = int(get_number(url_addr))
-
+url_addr1 = url_head+input_id+'?see_lz=1&pn='
+pages_number = int(get_number(url_addr1))+1
 
 tmp = 0
 for x in range(1,pages_number):
 	imgurl = url_addr+str(x)
 	for y in get_page(imgurl):
-		src_url = y.get('src')
+	 	src_url = y.get('src')
 		try:
 			urllib.urlretrieve(src_url,'C:\\pics\\%s.jpg' %tmp)
 			tmp+=1
-			print src_url+'		***Downling Success!***'
+			print src_url+'	 *Downling Success!*'
 		except Exception as e:
 			raise e
