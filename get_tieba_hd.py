@@ -19,9 +19,7 @@ def get_number(url):
 	page_no = page_number[1].string
 	return page_no
 
-#tieba_id = 'https://tieba.baidu.com/p/5305406355?see_lz=1&pn=1'
-
-tieba_id = '5412823143'
+tieba_id = raw_input('Enter tieba ID : ')
 tieba_head ='https://tieba.baidu.com/p/'
 url_pic_head = 'http://imgsrc.baidu.com/forum/pic/item/'
 
@@ -30,7 +28,6 @@ tieba_addr = tieba_head + tieba_id + tieba_str
 tieba_addr1 = tieba_head + tieba_id + tieba_str
 pages_number = int(get_number(tieba_addr1))+1
 
-#tmp = 0
 for x in range(1,pages_number):
 	imgurl = tieba_addr+str(x)
 	for s in get_page(imgurl):
@@ -40,7 +37,6 @@ for x in range(1,pages_number):
 		pics_url = url_pic_head + jpgs_name   #获取组合http_url头部和文件名后的URL
 		try:
 			urllib.urlretrieve(pics_url,'C:\\pics\\%s' %jpgs_name)
-			#tmp+=1
 			print pics_url +'	 *Downling Success!*'
 		except Exception as e:
 			raise e		
